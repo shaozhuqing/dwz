@@ -21,6 +21,8 @@
 
 8：生成速度特快
 
+9：支持API：https://dwz.ge/create.php?url=长网址
+
 自行修改config.php配置文件 .htaccess打开复制到Nginx伪静态文件
 
 单击链接复制，再点一下打开
