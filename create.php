@@ -30,6 +30,8 @@ if ($id) {
     exit();
 } else {
     //生成
+    header("Access-Control-Allow-Origin:*");
+    header("Content-Type:text/html,application/json; charset=utf-8");
     $url = isset($_GET['url']) ? trim($_GET['url']) : trim($_POST['url']);
     if ($url == '') {
         $message = '请输入网址';
