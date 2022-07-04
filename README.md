@@ -23,4 +23,6 @@ github发现的然后改了下，优点如下
 
 自行修改config.php配置文件 .htaccess打开复制到Nginx伪静态文件
 
+单击链接复制，再点一下打开
+
 ![images](https://file.lzfh.com/3buw30Gf)
