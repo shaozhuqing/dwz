@@ -45,8 +45,6 @@ if ($id) {
     }*/
     if (stripos($url, 'http') === false) {
         $url = 'http://' . $url;
-    } else {
-		$url = $url;
     }
     if (stripos($url, ".") < 8 || stristr($url, '.') == false) {
         $message = '请输入正确的网址';
