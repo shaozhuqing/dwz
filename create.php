@@ -25,9 +25,9 @@ if ($id) {
     if ($arr[$id]) {
         header('location:' . $arr[$id]);
     }
-    $message = "不存在此短网址！" . $config['site'] .'/'. $id;
+    $message = "短网址不存在";
     echo json_encode(array('code' => 8404, 'message' => $message));
-    exit();
+    exit;
 } else {
     //生成
     header("Access-Control-Allow-Origin:*");
@@ -36,14 +36,14 @@ if ($id) {
     if ($url == '') {
         $message = '请输入网址';
         echo json_encode(array('code' => 8001, 'message' => $message));
-        exit();
+        exit;
     }
     /*判断是否正则为正确的网址
     $regex = "/^(http(s)?:\/\/)([\w\-]+\.)+[\w\-]+(\/[\w\-.\/?%&=#]*)?$/i";
     if (!preg_match($regex, $url)) {
         $message = '请输入正确的网址';
         echo json_encode(array('code' => 8002, 'message' => $message));
-        exit();
+        exit;
     }*/
     if (stripos($url, 'http') === false) {
         $url = 'http://' . $url;
@@ -51,13 +51,19 @@ if ($id) {
     if (stripos($url, ".") < 8 || stristr($url, '.') == false) {
         $message = '请输入正确的网址';
         echo json_encode(array('code' => 8002, 'message' => $message));
-        exit();
+        exit;
     }
     //判断是否是黑名单域名
     if (!checkBlackList($url, $config['blackList'])) {
         $message = '抱歉，黑名单域名无法缩短';
         echo json_encode(array('code' => 8003, 'message' => $message));
-        exit();
+        exit;
+    }
+    //限制网址长度为1000字符
+    if(strlen($url) > 1000){
+        $message = '网址长度超过限制';
+        echo json_encode(array('code' => 8004, 'message' => $message));
+        exit;
     }
     //检查是否已存在重复网址
     $find = array_search($url, $arr);
@@ -81,5 +87,5 @@ if ($id) {
     $message = "短网址已生成";
     $shortUrl = ($config['use_rewrite'] == 1) ? "{$config['site']}/{$id}" : "{$config['site']}/create.php?id={$id}";
     echo json_encode(array('code' => 200, 'message' => $message, 'shortUrl' => $shortUrl));
-    exit();
+    exit;
 }
