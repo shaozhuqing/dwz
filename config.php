@@ -1,5 +1,5 @@
 <?php
-//请将urlsabc.php和urls123.php文件设置为777权限
+//请将urlsabc.php和urls123.php文件设置为777或755权限
 $config = array(
 	'title' => "短网址哥 - dwz.ge",                 //网站标题
 	'site' => "https://dwz.ge",                     //短网址域名
