@@ -20,6 +20,7 @@ $arr = require $saveFile;
 
 // 判断是生成还是跳转
 @$id = trim($_GET['id']);
+
 if ($id) {
     //跳转
     if ($arr[$id]) {
@@ -38,13 +39,15 @@ if ($id) {
         echo json_encode(array('code' => 8001, 'message' => $message));
         exit;
     }
-    /*判断是否正则为正确的网址
+    //判断是否正则为正确的网址
+	/*
     $regex = "/^(http(s)?:\/\/)([\w\-]+\.)+[\w\-]+(\/[\w\-.\/?%&=#]*)?$/i";
     if (!preg_match($regex, $url)) {
         $message = '请输入正确的网址';
         echo json_encode(array('code' => 8002, 'message' => $message));
         exit;
-    }*/
+    }
+	*/
     if (stripos($url, 'http') === false) {
         $url = 'http://' . $url;
     }
@@ -72,7 +75,7 @@ if ($id) {
     } else {
         //原来没有新插入
         if ($config['type'] == 'abc') {
-            $id = createId(5);    //随机生成5位小数字母+数字
+            $id = createId($config['count']);    //随机生成5位小数字母+数字
             $id = checkId($arr, $id);
             //原来没有新插入
             $arr[$id] = $url;

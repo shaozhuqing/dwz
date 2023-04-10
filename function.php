@@ -36,7 +36,7 @@ function getTopHost($host){
 //生成大小写字母和数字随机字符串
 function createId($len){
     //大小写字母和数字混用
-    $str = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    $str = 'abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ123456789';
     //小写字母和数字混用
     //$str = 'abcdefghijklmnopqrstuvwxyz0123456789';
     $key = '';
@@ -51,7 +51,7 @@ function checkId($arr,$id){
     if(!isset($arr[$id])){
         return $id;
     }else{
-        $id = createId(5);
+        $id = createId(4);
         return checkId($arr,$id);
     }
 }
